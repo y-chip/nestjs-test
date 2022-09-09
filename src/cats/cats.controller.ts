@@ -6,8 +6,6 @@ import {
   Param,
   Post,
   Put,
-  Query,
-  Req,
 } from "@nestjs/common";
 import { CatDto } from "./cat.dto";
 
