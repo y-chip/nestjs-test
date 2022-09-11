@@ -7,6 +7,8 @@ import { ScheduleModule } from "@nestjs/schedule";
 import { TasksService } from "./tasks/tasks.service";
 import { MulterModule } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
+import { ExcelsService } from "./excels/excels.service";
+import { ExcelsController } from "./excels/excels.controller";
 import * as dayjs from "dayjs";
 
 const crypto = require("crypto");
@@ -32,7 +34,12 @@ const fs = require("fs");
       }),
     }),
   ],
-  controllers: [SamplesController, CatsController, FilesController],
-  providers: [SamplesService, TasksService],
+  controllers: [
+    SamplesController,
+    CatsController,
+    FilesController,
+    ExcelsController,
+  ],
+  providers: [SamplesService, TasksService, ExcelsService],
 })
 export class AppModule {}
