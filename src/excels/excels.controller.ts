@@ -6,9 +6,12 @@ import {
 } from "@nestjs/common";
 import { ApiBody, ApiConsumes } from "@nestjs/swagger";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { ExcelsService } from "./excels.service";
 
 @Controller("excels")
 export class ExcelsController {
+  constructor(private readonly excelsService: ExcelsService) {}
+
   @Post("upload")
   @ApiConsumes("multipart/form-data")
   @ApiBody({
@@ -23,7 +26,7 @@ export class ExcelsController {
     },
   })
   @UseInterceptors(FileInterceptor("file"))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
+  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+    return this.excelsService.read(file);
   }
 }
