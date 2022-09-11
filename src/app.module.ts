@@ -10,6 +10,9 @@ import { diskStorage } from "multer";
 import { ExcelsService } from "./excels/excels.service";
 import { ExcelsController } from "./excels/excels.controller";
 import * as dayjs from "dayjs";
+import { HttpModule } from "@nestjs/axios";
+import { HttpsService } from "./https/https.service";
+import { HttpsController } from "./https/https.controller";
 
 const crypto = require("crypto");
 const fs = require("fs");
@@ -33,13 +36,15 @@ const fs = require("fs");
         },
       }),
     }),
+    HttpModule,
   ],
   controllers: [
     SamplesController,
     CatsController,
     FilesController,
     ExcelsController,
+    HttpsController,
   ],
-  providers: [SamplesService, TasksService, ExcelsService],
+  providers: [SamplesService, TasksService, ExcelsService, HttpsService],
 })
 export class AppModule {}
